@@ -1,0 +1,79 @@
+/*Chocolate and Wrapper Problem :
+
+Problem:
+Consider you have available amount of 'r' (Rs.16) and price of per chocolate as 'p'(Rs.2).
+Consider 'w' (2) wrappers can be exchanged for a chocolate.
+Now find the total number of chocolates that the person has after all the exhanges.
+
+Example:
+
+CASE 1:
+r=16
+p=2
+w=2
+
+CASE 2:
+m=15
+p=1
+w=3
+*/
+
+CLASSIC SOLUTION:
+
+Algorithm:
+Get all the required inputs from the user.
+Now firstly find the number of chocolates that can be bought with the amount in hand.
+Add that to a variable 's' which keeps track of number of  chocolates.
+Then iteratively add the number of chocolates that can be bought by exhanging wrapper using division.
+Then update the chocolate in hand using division and modulo operator.
+Finally print the 's' to get the total number of chocolates gained.
+
+Time Complexity : O(n)
+Space Complexity: O(1)
+
+import java.util.*;
+class Solution{
+public static void main(String args[]){
+Scanner sc=new Scanner(System.in);
+int r=sc.nextInt();
+int p=sc.nextInt();
+int w=sc.nextInt();
+int n=r/p;
+int s=0;
+s+=n;
+while(n>=w){
+s+=(n/w);
+n=(n/w)+(n%w);
+}
+System.out.println("The number of chocolates bought : "+s);
+}
+}
+
+OPTIMMIZED APPROACH:
+
+Algorithm:
+Get all the required inputs from the user.
+Now firstly find the number of chocolates that can be bought with the amount in hand.
+Add that to a variable 's' which keeps track of number of  chocolates.
+In the above case, we iteratively process until we are left with 1 chocolate.
+It is observed that we can get the result by just reducing the values of chocolates and wrappers by 1
+and then divide them to get the solution (s-1)/(w-1)
+ie.(chocolate in hand-1)/(wrapper-1)
+Finally print the 's' to get the total number of chocolates gained.
+
+Time complexity : O(1)
+Space Complexity : O(1)
+
+import java.util.*;
+class Solution{
+public static void main(String args[]){
+Scanner sc=new Scanner(System.in);
+int r=sc.nextInt();
+int p=sc.nextInt();
+int w=sc.nextInt();
+int s=0;
+s=r/p;
+s+=(s-1)/(w-1);
+System.out.println("The number of chocolates bought : "+s);
+}
+}
